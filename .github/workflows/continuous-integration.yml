@@ -1,0 +1,61 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches: [dev, main]
+
+env:
+  MIX_ENV: test
+
+jobs:
+  build:
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+          options: >-
+            --health-cmd pg_isready
+            --health-interval 10s
+            --health-timeout 5s
+            --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cancel Previous action Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ github.token }}
+      - name: Read .tool-versions
+        uses: marocchino/tool-versions-action@v1
+        id: versions
+      - name: Set up Elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: ${{steps.versions.outputs.elixir}}
+          otp-version: ${{ steps.versions.outputs.erlang}}
+      - name: Restore dependencies cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            deps
+            _build
+            priv/plts
+          key: ${{ runner.os }}-mix-v1-${{ hashFiles('**/mix.lock') }}
+          restore-keys: ${{ runner.os }}-mix-v1-
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Check Compile Warnings
+        run: mix compile --warnings-as-errors --all-warnings
+      - name: Check linter
+        run: mix check.linter
+      - name: Check code format
+        run: mix check.code.format
+      - name: Check code security
+        run: mix check.code.security
+      - name: Check code coverage
+        run: mix check.code.coverage

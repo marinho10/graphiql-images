@@ -1,0 +1,30 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Git
+/.github
+
+# AWS
+/.aws
+
+# Elixir Language Server
+/.elixir_ls
+
+# Elixir
+/config
+/lib
+/priv
+/test
+/.sobelow
+/.sobelow-conf
+/coveralls.json
+/mix.exs
+/mix.lock
+/README.md
+
+# Dependencies
+/deps
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

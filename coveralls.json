@@ -1,0 +1,10 @@
+{
+  "coverage_options": {
+    "minimum_coverage": 60
+  },
+  "skip_files": [
+    "test/support",
+    "lib/graphiql_images/release.ex",
+    "lib/graphiql_images_web/router.ex"
+  ]
+}

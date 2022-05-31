@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "jakebecker.elixir-ls",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode"
+  ]
+}
