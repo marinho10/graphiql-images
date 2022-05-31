@@ -9,7 +9,12 @@ defmodule GraphiQLImages.FactoryTest do
   import GraphiQLImages.Factory
 
   @tag :normal
-  test "build/1 works with our factory setup" do
+  test "build/1 name works with our factory setup" do
     assert is_binary(build(:name))
+  end
+
+  @tag :normal
+  test "build/1 user works with our factory setup" do
+    assert %{} = build(:user)
   end
 end

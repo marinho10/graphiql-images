@@ -1,19 +1,24 @@
-defmodule GraphiQLImagesGraphQL.Application.QueryTest do
+defmodule GraphiQLImagesGraphQL.Application.Query.ApplicationTest do
+  @moduledoc """
+  The Application Test.
+  """
   use GraphiQLImagesWeb.ConnCase
 
-  describe "application" do
-    @query """
-    query {
-      application {
-        version
-      }
-    }
-    """
+  @graphiql_path "/api/graphql"
 
+  @query """
+  query {
+    application {
+      version
+    }
+  }
+  """
+
+  describe "Application Test" do
     @tag :normal
-    test "version" do
+    test "Application query success" do
       response =
-        post(build_conn(), "/v1/graphql", %{
+        post(build_conn(), @graphiql_path, %{
           query: @query,
           variables: %{}
         })

@@ -1,7 +1,9 @@
 defmodule GraphiQLImagesWeb.Router do
+  @moduledoc """
+  Router for GraphiQLImagesWeb
+  """
   use GraphiQLImagesWeb, :router
 
-  import Plug.BasicAuth
   import Phoenix.LiveDashboard.Router
 
   pipeline :graphql do
@@ -19,23 +21,23 @@ defmodule GraphiQLImagesWeb.Router do
     plug(:put_secure_browser_headers)
   end
 
-  pipeline :admins_only do
-    plug(
-      :basic_auth,
-      username: Application.get_env(:graphiql_images, :live_dashboard_password) || "admin",
-      password: Application.get_env(:graphiql_images, :live_dashboard_password) || "admin"
-    )
-  end
-
   scope "/" do
-    pipe_through [:admins_only, :browser]
+    pipe_through [:browser]
     live_dashboard "/dashboard", metrics: GraphiQLImagesWeb.Telemetry, ecto_repos: [GraphiQLImages.Repo]
   end
 
-  scope "/v1" do
+  scope "/api" do
     pipe_through :graphql
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: GraphiQLImagesGraphQL.Schema
+    # GraphiQl endpoint
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: GraphiQLImagesGraphQL.Schema,
+      default_url: Application.get_env(:graphiql_images, :graphql_default_url, "http://localhost:4000/api/graphql"),
+      interface: :advanced,
+      adapter: Absinthe.Adapter,
+      socket: GraphiQLImagesWeb.UserSocket
+
+    # GraphQl endpoint
     forward "/graphql", Absinthe.Plug, schema: GraphiQLImagesGraphQL.Schema
   end
 end

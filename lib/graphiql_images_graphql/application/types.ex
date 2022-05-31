@@ -4,10 +4,18 @@ defmodule GraphiQLImagesGraphQL.Application.Types do
   """
   use Absinthe.Schema.Notation
 
+  #
+  # Objects
+  #
+
   object :application do
     @desc "The application version"
     field(:version, :string)
   end
+
+  #
+  # Queries
+  #
 
   object :application_queries do
     @desc "Application information"
@@ -17,6 +25,10 @@ defmodule GraphiQLImagesGraphQL.Application.Types do
       end)
     end
   end
+
+  #
+  # Private functions
+  #
 
   defp version, do: Application.spec(:graphiql_images, :vsn)
 end

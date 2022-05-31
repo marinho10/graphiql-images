@@ -11,7 +11,6 @@ import Config
 # before starting your production server.
 config :graphiql_images,
   ecto_repos: [GraphiQLImages.Repo],
-  cookie_domain: "localhost",
   cookie_secure: true
 
 # Do not print debug messages in production
@@ -61,7 +60,7 @@ config :graphiql_images, GraphiQLImages.Repo,
 #
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
-config :threat_optix, ThreatOptixWeb.Endpoint,
+config :graphiql_images, GraphiQLImagesWeb.Endpoint,
   url: [host: "example.com", port: 443],
   load_from_system_env: false,
   server: true,
@@ -71,6 +70,5 @@ config :threat_optix, ThreatOptixWeb.Endpoint,
     port: String.to_integer("4000"),
     protocol_options: [idle_timeout: :infinity]
   ],
-  live_view: [signing_salt: "liveviewsalt"],
   debug_errors: false,
   check_origin: false

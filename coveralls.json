@@ -4,7 +4,10 @@
   },
   "skip_files": [
     "test/support",
+    "lib/graphiql_images_web.ex",
     "lib/graphiql_images/release.ex",
-    "lib/graphiql_images_web/router.ex"
+    "lib/graphiql_images_web/router.ex",
+    "lib/graphiql_images_web/views/*",
+    "lib/graphiql_images_web/channels/*"
   ]
 }

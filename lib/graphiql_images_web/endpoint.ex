@@ -46,7 +46,7 @@ defmodule GraphiQLImagesWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_graphiql_images_key",
-    signing_salt: "Xr7b2Pgg"
+    signing_salt: "Xr7b2P11"
 
   # Live Dashboard
   socket "/live", Phoenix.LiveView.Socket

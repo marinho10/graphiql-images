@@ -55,13 +55,14 @@ defmodule GraphiQLImages.MixProject do
     [
       # Phoenix
       {:phoenix, "~> 1.6"},
-      {:phoenix_pubsub, "~> 2.0"},
+      {:phoenix_pubsub, "~> 2.1"},
       {:phoenix_ecto, "~> 4.4"},
       {:jason, "~> 1.2"},
 
       # Phoenix Live dashboard
-      {:phoenix_live_dashboard, "~> 0.6"},
-      {:phoenix_html, "~> 3.1"},
+      {:phoenix_live_dashboard, "~> 0.6.5"},
+      {:flame_on, "~> 0.5"},
+      {:phoenix_html, "~> 3.0"},
       {:telemetry_poller, "~> 0.5"},
       {:telemetry_metrics, "~> 0.6"},
 
@@ -69,16 +70,25 @@ defmodule GraphiQLImages.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:cors_plug, "~> 3.0"},
 
+      # Phoenix Liveview
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_view, "~> 0.17"},
+      {:floki, "~> 0.30", only: :test},
+      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
+
       # GraphQL
       {:absinthe, "~> 1.7"},
+      {:absinthe_phoenix, "~> 2.0"},
       {:absinthe_plug, "~> 1.5"},
       {:dataloader, "~> 1.0"},
       {:absinthe_error_payload, "~> 1.1"},
 
       # Database
-      {:ecto_sql, "~> 3.7"},
+      {:ecto_sql, "~> 3.8"},
       {:ecto_psql_extras, "~> 0.7"},
       {:postgrex, "~> 0.15"},
+      {:ecto_sanitizer, "~> 0.1.0"},
+      {:scrivener_ecto, "~> 2.7"},
 
       # Translations
       {:gettext, "~> 0.18"},
