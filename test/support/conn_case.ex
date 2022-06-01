@@ -24,6 +24,9 @@ defmodule GraphiQLImagesWeb.ConnCase do
       import Phoenix.ConnTest
       alias GraphiQLImagesWeb.Router.Helpers, as: Routes
 
+      # UploadFileMock
+      import GraphiQLImages.UploadFileMock
+
       # The default endpoint for testing
       @endpoint GraphiQLImagesWeb.Endpoint
     end

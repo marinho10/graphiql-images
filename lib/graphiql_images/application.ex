@@ -15,9 +15,9 @@ defmodule GraphiQLImages.Application do
       # Pubsub conf
       {Phoenix.PubSub, name: GraphiQLImages.PubSub},
       # Start the endpoint when the application starts
-      GraphiQLImagesWeb.Endpoint
-      # Starts a worker by calling: GraphiQLImages.Worker.start_link(arg)
-      # {GraphiQLImages.Worker, arg},
+      GraphiQLImagesWeb.Endpoint,
+      # Worker to start the workers when app starts
+      GraphiQLImages.User.GalleryImage.Process.ImageCleanWorker
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

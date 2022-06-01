@@ -35,6 +35,16 @@ config :phoenix, :json_library, Jason
 # esbuild configuration
 config :esbuild, :version, "0.14.41"
 
+# Waffle configuration
+config :waffle,
+  storage: Waffle.Storage.Local,
+  # 30 seconds
+  version_timeout: 30_000
+
+# ExAws configuration
+config :ex_aws,
+  json_codec: Jason
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config("#{config_env()}.exs")

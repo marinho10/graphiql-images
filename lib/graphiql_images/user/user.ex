@@ -6,10 +6,14 @@ defmodule GraphiQLImages.User do
   use GraphiQLImages.Schema
   import Ecto.Changeset
 
+  alias GraphiQLImages.User.GalleryImage
+
   schema "users" do
     field(:email, :string)
     field(:name, :string)
     field(:surname, :string)
+
+    has_many :gallery, GalleryImage, on_replace: :delete, on_delete: :delete_all
 
     timestamps()
   end

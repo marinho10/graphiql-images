@@ -35,7 +35,8 @@ defmodule GraphiQLImagesWeb.Router do
       default_url: Application.get_env(:graphiql_images, :graphql_default_url, "http://localhost:4000/api/graphql"),
       interface: :advanced,
       adapter: Absinthe.Adapter,
-      socket: GraphiQLImagesWeb.UserSocket
+      socket: GraphiQLImagesWeb.UserSocket,
+      context: %{pubsub: GraphiQLImagesGraphQl.Context}
 
     # GraphQl endpoint
     forward "/graphql", Absinthe.Plug, schema: GraphiQLImagesGraphQL.Schema

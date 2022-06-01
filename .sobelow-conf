@@ -8,5 +8,8 @@
   out: "",
   threshold: "low",
   ignore: ["Config.HTTPS", "Config.Headers", "Config.CSP", "Config.CSRF"],
-  ignore_files: ["config/prod.secret.exs"]
+  ignore_files: [
+    "lib/graphiql_images_graphql/dataloader.ex",
+    "config/prod.secret.exs"
+    ]
 ]

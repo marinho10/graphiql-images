@@ -80,8 +80,8 @@ defmodule GraphiQLImages.MixProject do
       {:absinthe, "~> 1.7"},
       {:absinthe_phoenix, "~> 2.0"},
       {:absinthe_plug, "~> 1.5"},
-      {:dataloader, "~> 1.0"},
       {:absinthe_error_payload, "~> 1.1"},
+      {:dataloader, "~> 1.0"},
 
       # Database
       {:ecto_sql, "~> 3.8"},
@@ -89,6 +89,21 @@ defmodule GraphiQLImages.MixProject do
       {:postgrex, "~> 0.15"},
       {:ecto_sanitizer, "~> 0.1.0"},
       {:scrivener_ecto, "~> 2.7"},
+
+      # file upload library
+      {:waffle, "~> 1.1.5"},
+      {:waffle_ecto, "~> 0.0.11"},
+      {:fastimage, "~> 1.0.0-rc4"},
+      {:uuid, "~> 1.1.8"},
+
+      # file upload library - If using S3
+      {:ex_aws, "~> 2.3"},
+      {:ex_aws_s3, "~> 2.3"},
+      {:hackney, "~> 1.18"},
+      {:sweet_xml, "~> 0.7"},
+
+      # Time
+      {:timex, "~> 3.7"},
 
       # Translations
       {:gettext, "~> 0.18"},

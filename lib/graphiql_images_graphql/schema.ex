@@ -4,21 +4,22 @@ defmodule GraphiQLImagesGraphQL.Schema do
   """
   use Absinthe.Schema
 
-  alias GraphiQLImages.Repo
-  alias GraphiQLImagesGraphQL.Middleware
+  alias GraphiQLImagesGraphQl.Middleware
 
-  def context(context),
-    do:
-      Map.put(
-        context,
-        :loader,
-        Dataloader.add_source(Dataloader.new(), Repo, Dataloader.Ecto.new(Repo))
-      )
+  @doc """
+  Define the GraphQL context
+  """
+  def context(context) do
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(Repo, GraphiQLImagesGraphQl.Dataloader.data())
 
-  def plugins,
-    do: [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+    Map.put(context, :loader, loader)
+  end
 
-  # Middleware - errors
+  @doc """
+  Define the GraphQL middleware
+  """
   def middleware(middleware, _field, %{identifier: type})
       when type in [:query, :mutation] do
     middleware ++ [Middleware.Errors]
@@ -26,17 +27,35 @@ defmodule GraphiQLImagesGraphQL.Schema do
 
   def middleware(middleware, _field, _object), do: middleware
 
+  @doc """
+  Define the GraphQL plugins
+  """
+  def plugins do
+    [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+  end
+
+  import_types(Absinthe.Plug.Types)
   import_types(Absinthe.Type.Custom)
   import_types(GraphiQLImagesGraphQL.General.Types)
   import_types(GraphiQLImagesGraphQL.Application.Types)
   import_types(GraphiQLImagesGraphQL.User.Types)
+  import_types(GraphiQLImagesGraphQl.User.GalleryImage.Types)
 
-  #
-  # Queries
-  #
+  ############
+  # Queries  #
+  ############
 
   query do
     import_fields(:application_queries)
     import_fields(:user_queries)
+  end
+
+  ##############
+  # Mutations  #
+  ##############
+
+  mutation do
+    import_fields(:user_mutations)
+    import_fields(:user_gallery_image_mutations)
   end
 end

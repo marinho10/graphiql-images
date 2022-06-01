@@ -113,13 +113,13 @@ field(:id, non_null(:id))
 field(:gallery_image, non_null(:file_image)) do
 resolve(&GeneralResolver.gallery_image/3)
 end
-field(:animal_id, :id)
+field(:user_id, :id)
 end
 
 object(:user_gallery_image_mutations) do
 field(:user_gallery_image_create, :user_gallery_image) do
 arg(:gallery_image, non_null(:upload))
-resolve(&AnimalGalleryImageResolver.user_gallery_image_create/2)
+resolve(&UserGalleryImageResolver.user_gallery_image_create/2)
 end
 end
 
