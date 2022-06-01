@@ -35,3 +35,6 @@ graphiql_images-*.tar
 
 # MacOS Files
 .DS_STORE
+
+# test images
+/uploads/
