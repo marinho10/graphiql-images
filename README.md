@@ -1,10 +1,4 @@
-# GraphiQLImages
-
-![](https://github.com/<ORGANIZATION_NAME/<REPOSITORY_NAME>/workflows/Continuous%20Integration%20Staging/badge.svg)
-![](https://github.com/<ORGANIZATION_NAME/<REPOSITORY_NAME>/workflows/Continuous%20Deployment%20Staging/badge.svg)
-
-![](https://github.com/<ORGANIZATION_NAME/<REPOSITORY_NAME>/workflows/Continuous%20Integration%20Production/badge.svg)
-![](https://github.com/<ORGANIZATION_NAME/<REPOSITORY_NAME>/workflows/Continuous%20Deployment%20Production/badge.svg)
+# GraphiQLImages Project
 
 ## 🚧 Dependencies
 
@@ -37,62 +31,3 @@ Several linting, formatting tools and security checks can be ran to ensure codin
 
 Tests can be ran with `mix test` and test coverage can be calculated with `mix check.code.coverage`.
 
-### AWS Alarms
-
-Please pay attention and if necessary we should create alarms associated with EC2 instance (CPU, memory, etc ...).
-
-### Github Actions
-
-Change environment variables on the workflow file to reflect the project's variables (app name, etc).
-
-### Testing Level
-
-- [ ] First Level (Endpoint)
-- [ ] Second Level (Model)
-- [ ] Third Level (Integration)
-
-## GraphQL Schema Nomenclature
-
-### Queries
-
-- Example `<entity>` for one element (entity shop)
-
-```graphql
-query {
-  shop {
-    id
-    name
-    email
-  }
-}
-```
-
-- Example `<entities>` for list elements (entity shop)
-
-```graphql
-query(page: Integer!, pageSize: Integer!) {
-  shops(page: $page, pageSize: $pageSize) {
-    entries {
-      id
-      name
-      email
-    }
-  }
-}
-```
-
-### Mutations
-
-- Example `<entity>_<action>` (entity shop, action edit)
-
-```graphql
-mutation ($id: ID!, $input: ShopEditInput!) {
-  shopEdit(id: $id, input: $input) {
-    id
-    name
-    email
-  }
-}
-```
-
-Any doubts follow the [Shopify concept](https://shopify.dev/concepts/graphql/).
